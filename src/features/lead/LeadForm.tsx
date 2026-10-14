@@ -168,6 +168,7 @@ export function LeadForm() {
             checked={value === true}
             onChange={(next) => updateValue(field.name, next)}
             onBlur={() => validateField(field.name)}
+            label={field.label}
           />
         );
 
@@ -188,6 +189,7 @@ export function LeadForm() {
             >
               <Field
                 id={field.name}
+                variant={field.type}
                 label={field.label}
                 required={field.validations.some(
                   (rule) => rule.type === "required",

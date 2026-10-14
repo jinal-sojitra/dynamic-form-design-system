@@ -5,6 +5,7 @@ type FieldProps = {
   id: string;
   label: string;
   required?: boolean;
+  variant: string;
   hint?: string;
   error?: string;
   children: ReactElement<{
@@ -16,6 +17,7 @@ type FieldProps = {
 export function Field({
   id,
   label,
+  variant,
   required = false,
   hint,
   error,
@@ -35,28 +37,32 @@ export function Field({
 
   return (
     <div className="field">
-      <label className="field__label" htmlFor={id}>
-        {label}
-        {required && (
-          <span className="field__required" aria-hidden="true">
-            {" "}
-            *
-          </span>
-        )}
-      </label>
-
-      {control}
-
-      {hint && (
-        <p id={hintId} className="field__hint">
-          {hint}
-        </p>
-      )}
-
-      {error && (
-        <p id={errorId} className="field__error" role="alert">
-          {error}
-        </p>
+      {variant === "checkbox" ? (
+        <div className="field__checkbox-row">
+          {control}
+          <label className="field__label" htmlFor={id}>
+            {label}
+            {required && (
+              <span className="field__required" aria-hidden="true">
+                {" "}
+                *
+              </span>
+            )}
+          </label>
+        </div>
+      ) : (
+        <>
+          <label className="field__label" htmlFor={id}>
+            {label}
+            {required && (
+              <span className="field__required" aria-hidden="true">
+                {" "}
+                *
+              </span>
+            )}
+          </label>
+          {control}
+        </>
       )}
     </div>
   );
