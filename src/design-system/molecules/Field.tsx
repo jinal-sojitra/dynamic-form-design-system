@@ -64,6 +64,17 @@ export function Field({
           {control}
         </>
       )}
+      {hint && (
+        <p id={hintId} className="field__hint">
+          {hint}
+        </p>
+      )}
+
+      {error && (
+        <p id={errorId} className="field__error" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
